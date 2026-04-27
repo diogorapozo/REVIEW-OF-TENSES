@@ -271,16 +271,16 @@ editBtns.forEach(btn => {
     });
 });
 
-sendBtn.addEventListener('click', () => {
+sendBtn.addEventListener('click', async () => {
     const studentName = studentNameInput.value.trim() || 'Anonymous Student';
     let hasContent = false;
-    let bodyText = `Teacher, here are the sentences from ${studentName} for the Review of Tenses activity:%0D%0A%0D%0A`;
     
+    let logData = "--- STUDENT SENTENCES ---\n\n";
     sentenceInputs.forEach((input, index) => {
         if(input.value.trim() !== "") {
             hasContent = true;
             const tenseValue = tenseSelects[index].value || "No tense specified";
-            bodyText += `${index + 1}. [${tenseValue}] - ${input.value}%0D%0A`;
+            logData += `Line ${index + 1} [${tenseValue}]:\n${input.value}\n\n`;
         }
     });
 
@@ -289,8 +289,48 @@ sendBtn.addEventListener('click', () => {
         return;
     }
 
-    const mailtoLink = `mailto:dirapozo@gmail.com?subject=Review of Tenses - ${studentName}&body=${bodyText}`;
-    window.location.href = mailtoLink;
+    logData += "--- ROLL HISTORY ---\n";
+    if (rollHistoryArr.length === 0) {
+        logData += "No rolls recorded.\n";
+    } else {
+        rollHistoryArr.forEach((roll, idx) => {
+            logData += `${idx + 1}. Time: ${roll.expr} | Verb: ${roll.verb}\n`;
+        });
+    }
+
+    const originalText = sendBtn.innerText;
+    sendBtn.innerText = "SENDING LOG...";
+    sendBtn.disabled = true;
+
+    try {
+        const response = await fetch("https://formsubmit.co/ajax/dirapozo@gmail.com", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                _subject: `Review of Tenses Log - ${studentName}`,
+                Student_Name: studentName,
+                Activity_Log: logData
+            })
+        });
+
+        if (response.ok) {
+            alert("Log sent to the teacher successfully!");
+            sendBtn.innerText = "SENT!";
+            setTimeout(() => {
+                sendBtn.innerText = originalText;
+                sendBtn.disabled = false;
+            }, 3000);
+        } else {
+            throw new Error("API responded with an error");
+        }
+    } catch (error) {
+        alert("Error sending the log. Please check your connection and try again.");
+        sendBtn.innerText = originalText;
+        sendBtn.disabled = false;
+    }
 });
 
 resetBtn.addEventListener('click', () => {
