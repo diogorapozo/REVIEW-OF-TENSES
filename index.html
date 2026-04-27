@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review of Tenses Activity</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <button id="contrast-toggle" class="contrast-btn">🌓 High Contrast</button>
+    
+    <div class="main-container">
+        <header>
+            <h1>REVIEW OF TENSES</h1>
+            <hr>
+            <h2>Grammar: B2</h2>
+        </header>
+
+        <div class="student-info">
+            <input type="text" id="student-name" placeholder="Student Name" autocomplete="off">
+        </div>
+
+        <div class="instructions-clean">
+            <p><strong>Step 1:</strong> Roll the dice. &nbsp;&nbsp; <strong>Step 2:</strong> Write a sentence. &nbsp;&nbsp; <strong>Step 3:</strong> Select the tense. &nbsp;&nbsp; <strong>Step 4:</strong> Check your grammar. &nbsp;&nbsp; <strong>Step 5:</strong> Send to the teacher!</p>
+        </div>
+
+        <div class="dice-layout">
+            <div class="dice-container">
+                <div class="die-box">
+                    <div class="die" id="die1">TIME</div>
+                </div>
+                <div class="die-box">
+                    <div class="die" id="die2">VERB</div>
+                </div>
+            </div>
+            
+            <div class="roll-history">
+                <h3>History</h3>
+                <ul id="history-list">
+                    <li class="empty-history">No rolls yet</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="action-center">
+            <button id="roll-btn">ROLL DICE</button>
+            <button id="speak-btn" class="speak-btn" style="display: none;">🔊 Listen</button>
+        </div>
+
+        <div id="tip-section" class="tip-section" style="display: none;">
+            <button id="tip-btn">💡 Hint</button>
+            <div id="tip-content" class="tip-content" style="display: none;"></div>
+        </div>
+
+        <div class="notebook">
+            <div class="notebook-line">
+                <span class="line-num">1.</span>
+                <textarea class="sentence-input" data-index="0" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="0">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            <div class="notebook-line">
+                <span class="line-num">2.</span>
+                <textarea class="sentence-input" data-index="1" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="1">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            <div class="notebook-line">
+                <span class="line-num">3.</span>
+                <textarea class="sentence-input" data-index="2" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="2">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            <div class="notebook-line">
+                <span class="line-num">4.</span>
+                <textarea class="sentence-input" data-index="3" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="3">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            <div class="notebook-line">
+                <span class="line-num">5.</span>
+                <textarea class="sentence-input" data-index="4" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="4">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            <div class="notebook-line">
+                <span class="line-num">6.</span>
+                <textarea class="sentence-input" data-index="5" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="5">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            <div class="notebook-line">
+                <span class="line-num">7.</span>
+                <textarea class="sentence-input" data-index="6" placeholder="Write your sentence here..." rows="1"></textarea>
+                <select class="tense-select" data-index="6">
+                    <option value="">Tense...</option>
+                    <option value="Present Simple">Present Simple</option>
+                    <option value="Past Simple">Past Simple</option>
+                    <option value="Present Continuous">Present Continuous</option>
+                    <option value="Past Continuous">Past Continuous</option>
+                    <option value="Present Perfect">Present Perfect</option>
+                    <option value="Past Perfect">Past Perfect</option>
+                </select>
+                <button class="check-btn">Check</button>
+                <button class="edit-btn" style="display: none;" title="Edit sentence">✏️ Edit</button>
+                <span class="feedback"></span>
+            </div>
+            
+            <div class="submit-section">
+                <button id="reset-btn">Start Over</button>
+                <button id="send-btn">Send sentences to teacher</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
